@@ -1,10 +1,11 @@
 [user]
-  name = Ben Alman
-  email = EMAIL
+  name = Laurent Stemmer
+  email = laurent.stemmer@gmail.com
 [core]
   autocrlf = input
   whitespace = fix,space-before-tab,tab-in-indent,trailing-space
   excludesfile = ~/.gitignore_global
+  editor = /usr/bin/vim
 [apply]
   whitespace = fix
 [alias]
@@ -19,6 +20,8 @@
   rv = review
   st = status
   ksdiff = difftool -y -t Kaleidoscope
+[push]
+	default = current
 [branch "master"]
   remote = origin
   merge = refs/heads/master
@@ -39,21 +42,3 @@
   untracked = cyan
 [merge]
   log = true
-[difftool "Kaleidoscope"]
-  cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
-[rerere]
-  enabled = 1
-[url "git@github.com:"]
-  insteadOf = "gh:"
-  pushInsteadOf = "github:"
-  pushInsteadOf = "git://github.com/"
-[url "git://github.com/"]
-  insteadOf = "github:"
-[url "git@gist.github.com:"]
-  insteadOf = "gst:"
-  pushInsteadOf = "gist:"
-  pushInsteadOf = "git://gist.github.com/"
-[url "git://gist.github.com/"]
-  insteadOf = "gist:"
-[url "git@heroku.com:"]
-  insteadOf = "heroku:"

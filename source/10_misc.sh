@@ -10,3 +10,9 @@ function path_remove() {
   # output the new array
   echo "${t[*]}"
 }
+
+alias rm='rm -i'
+alias rd='rm -r'
+alias mv='mv -i'
+alias cp='cp -i'
+

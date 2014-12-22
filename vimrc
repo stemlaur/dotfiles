@@ -1,6 +1,7 @@
 " Make vim more useful
 set nocompatible
 
+" http://askubuntu.com/questions/283908/how-can-i-install-and-use-powerline-plugin
 set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 
 

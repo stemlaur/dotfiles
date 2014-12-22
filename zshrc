@@ -96,6 +96,17 @@ source $ZSH/oh-my-zsh.sh
 # bindkey "^N" insert-last-word
 # bindkey -s "^T" "^[Isudo ^[A" # "t" for "toughguy"
 
+# load our own completion functions
+fpath=(~/.zsh/completion $fpath)
+
+# completion
+autoload -U compinit
+compinit
+
+# load custom executable functions
+for function in ~/.zsh/functions/*; do
+  source $function
+done
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local

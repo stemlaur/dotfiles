@@ -4,12 +4,11 @@ set nocompatible
 " http://askubuntu.com/questions/283908/how-can-i-install-and-use-powerline-plugin
 set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 
-
 " Set syntax highlighting options.
 set t_Co=256
 set background=dark
 syntax on
-" colorscheme molotov
+colorscheme molotov
 
 " Change mapleader
 let mapleader=" "

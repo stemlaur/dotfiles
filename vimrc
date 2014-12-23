@@ -309,71 +309,6 @@ function! s:Pulse()
 endfunction
 command! -nargs=0 Pulse call s:Pulse()
 
-" Highlight Word (thanks Steve Losh)
-"
-" This mini-plugin provides a few mappings for highlighting words temporarily.
-"
-" Sometimes you're looking at a hairy piece of code and would like a certain
-" word or two to stand out temporarily.  You can search for it, but that only
-" gives you one color of highlighting.  Now you can use <leader>N where N is
-" a number from 1-6 to highlight the current word in a specific color.
-function! HiInterestingWord(n) " {{{
-    " Save our location.
-    normal! mz
-
-    " Yank the current word into the z register.
-    normal! "zyiw
-
-    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
-    let mid = 86750 + a:n
-
-    " Clear existing matches, but don't worry if they don't exist.
-    silent! call matchdelete(mid)
-
-    " Construct a literal pattern that has to match at boundaries.
-    let pat = '\V\<' . escape(@z, '\') . '\>'
-
-    " Actually match the words.
-    call matchadd("InterestingWord" . a:n, pat, 1, mid)
-
-    " Move back to our original location.
-    normal! `z
-endfunction
-
-" Mappings
-nnoremap <silent> <leader>1 :call HiInterestingWord(1)<cr>
-nnoremap <silent> <leader>2 :call HiInterestingWord(2)<cr>
-nnoremap <silent> <leader>3 :call HiInterestingWord(3)<cr>
-nnoremap <silent> <leader>4 :call HiInterestingWord(4)<cr>
-nnoremap <silent> <leader>5 :call HiInterestingWord(5)<cr>
-nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
-
-" Default Highlights
-hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
-hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
-hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
-hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
-hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
-hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
-
-" Word processor mode (:WP)
-func! WordProcessorMode()
-  setlocal formatoptions=t1
-  setlocal textwidth=100
-  map j gj
-  map k gk
-  setlocal smartindent
-  setlocal spell spelllang=en_ca
-  setlocal noexpandtab
-endfu
-com! WP call WordProcessorMode()
-
-" Restore cursor position
-autocmd BufReadPost *
-  \ if line("'\"") > 1 && line("'\"") <= line("$") |
-  \   exe "normal! g`\"" |
-  \ endif
-
 " Set relative line numbers
 set relativenumber " Use relative line numbers. Current line is still in status bar.
 au BufReadPost,BufNewFile * set relativenumber
@@ -402,12 +337,6 @@ au BufRead,BufNewFile *.fish set ft=fish
 " XML
 au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
 
-" Highlight Custom C Types
-autocmd BufRead,BufNewFile *.[ch] let fname = expand('<afile>:p:h') . '/types.vim'
-autocmd BufRead,BufNewFile *.[ch] if filereadable(fname)
-autocmd BufRead,BufNewFile *.[ch]   exe 'so ' . fname
-autocmd BufRead,BufNewFile *.[ch] endif
-
 " Ack.vim
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
@@ -419,11 +348,6 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamecollapse = 0
 let g:airline#extensions#tabline#fnamemod = ':t'
-
-" Clojure.vim
-let g:vimclojure#ParenRainbow = 1 " Enable rainbow parens
-let g:vimclojure#DynamicHighlighting = 1 " Dynamic highlighting
-let g:vimclojure#FuzzyIndent = 1 " Names beginning in 'def' or 'with' to be indented as if they were included in the 'lispwords' option
 
 " CtrlP.vim
 let g:ctrlp_match_window_bottom = 0 " Show at top of window
@@ -444,9 +368,6 @@ let g:markdown_fenced_languages = ['ruby', 'html', 'javascript', 'css', 'erb=eru
 " Notes.vim
 let g:notes_directories = ['~/Dropbox/Notes']
 
-" RainbowParenthesis.vim
-nnoremap <leader>rp :RainbowParenthesesToggle<CR>
-
 " Ruby.vim
 let ruby_operators = 1
 let ruby_space_errors = 1
@@ -456,3 +377,56 @@ let ruby_fold = 1
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+
+if &compatible
+  set nocompatible
+end
+
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
+
+" Let Vundle manage Vundle
+Plugin 'gmarik/Vundle.vim'
+
+" Define bundles via Github repos
+Plugin 'ap/vim-css-color'
+Plugin 'bling/vim-airline'
+" Plugin 'joker1007/vim-ruby-heredoc-syntax'
+Plugin 'junegunn/vim-easy-align'
+" Plugin 'junegunn/vim-emoji'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
+" Plugin 'msanders/snipmate.vim'
+" Plugin 'mustache/vim-mustache-handlebars'
+" Plugin 'nathanaelkane/vim-indent-guides'
+" Plugin 'oplatek/Conque-Shell'
+" Plugin 'pangloss/vim-javascript'
+Plugin 'scrooloose/nerdcommenter'
+" Plugin 'scrooloose/syntastic'
+" Plugin 'slim-template/vim-slim', { 'for': 'slim' }
+" Plugin 'thoughtbot/vim-rspec'
+" Plugin 'tpope/vim-fugitive'
+" Plugin 'tpope/vim-haml'
+" Plugin 'tpope/vim-markdown',     { 'for': 'markdown' }
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'scrooloose/nerdtree'
+" Plugin 'vim-scripts/fish.vim',   { 'for': 'fish' }
+" Plugin 'vim-scripts/jade.vim',   { 'for': 'jade' }
+" Plugin 'wavded/vim-stylus',      { 'for': 'stylus' }
+" Plugin 'wlangstroth/vim-racket'
+" Plugin 'xolox/vim-misc'
+" Plugin 'xolox/vim-notes'
+
+" Bundle 'morhetz/gruvbox'
+
+if filereadable(expand("~/.vimrc.bundles.local"))
+  source ~/.vimrc.bundles.local
+endif
+
+call vundle#end()
+filetype on

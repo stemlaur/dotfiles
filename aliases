@@ -13,11 +13,6 @@ alias -g ONE="| awk '{ print \$1}'"
 alias e="$EDITOR"
 alias v="$VISUAL"
 
-# git
-alias gco="git checkout"
-alias gst="git status"
-alias gci="git commit --interactive"
-
 # Bundler
 alias b="bundle"
 

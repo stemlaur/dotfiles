@@ -46,7 +46,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(colored-man fasd git git-flow mvn per-directory-history vi-mode)
+plugins=(colored-man fasd git git-flow mvn vi-mode)
 
 # User configuration
 

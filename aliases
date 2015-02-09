@@ -33,3 +33,6 @@ alias path="echo $PATH | tr -s ':' '\n'"
 
 # Rainbow
 alias rmvn='rainbow --config=mvn3 -- mvn '
+
+# Git
+alias gf='git fetch'

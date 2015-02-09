@@ -45,6 +45,3 @@
 [rerere]
   autoupdate = true
   enabled = true
-[user]
-	email = laurent.stemmer@weekendesk.fr
-	name = laurent stemmer

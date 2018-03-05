@@ -23,7 +23,7 @@ alias t="ruby -I test"
 alias migrate="rake db:migrate db:rollback && rake db:migrate"
 alias m="migrate"
 alias rk="rake"
-alias s="rspec"
+alias s="source ~/.zshrc"
 
 # Pretty print the path
 alias path="echo $PATH | tr -s ':' '\n'"
@@ -32,7 +32,7 @@ alias path="echo $PATH | tr -s ':' '\n'"
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
 
 # Rainbow
-alias rmvn='rainbow --config=mvn3 -- mvn '
+alias rmvn='mvn-color'
 
 # Git
-alias gf='git fetch'
+alias gfe='git fetch'

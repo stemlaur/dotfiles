@@ -30,6 +30,7 @@
   lg = log --graph --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ar)%Creset'
   st = status
   please = push --force-with-lease
+  up = pull --rebase --autostash
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
@@ -48,3 +49,6 @@
 [cola]
   spellcheck = false
 
+[user]
+	name = stemlaur
+	email = stemlaur2@gmail.com

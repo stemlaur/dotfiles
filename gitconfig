@@ -27,7 +27,6 @@
   ca = commit --amend
   ci = commit 
   co = checkout
-  ctags = "!sh -c '[ -f .git/hooks/ctags ] || git init; .git/hooks/ctags' git-ctags"
   lg = log --graph --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ar)%Creset'
   st = status
   please = push --force-with-lease
@@ -48,24 +47,4 @@
   enabled = true
 [cola]
   spellcheck = false
-[gitflow "branch"]
-  master = master
-  develop = develop
-[gitflow "prefix"]
-  feature = feature/
-  bugfix = bugfix/
-  release = release/
-  hotfix = hotfix/
-  support = support/
-  versiontag =
-[gitflow "path"]
-  hooks = /Users/stemmer/git-flow-hooks
-[gitflow "release.finish"]
-  message = Release %tag%
-[gitflow "hotfix.finish"]
-  message = Hotfix %tag%
-[branch "develop"]
-  remote = origin
-  merge = refs/heads/develop
-[gitflow "branch.feature/test"]
-  base = develop
+
